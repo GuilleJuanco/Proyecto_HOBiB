@@ -66,6 +66,7 @@ for index, hotel in cheapest_hotels.iterrows():
     st.text('--------------------')
     st.write(f'**Distrito:** {hotel["distrito"]}')
     st.write(f'**Precio:** {hotel["precio"]} €')
+    st.write(f'**Rating:** {hotel["rating"]}')
     st.text('--------------------')
 
 #Numero de hoteles por distrito.
