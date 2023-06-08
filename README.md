@@ -1,6 +1,6 @@
-# HOBiB: 
+# HOBiB: Extracción y Visualización de Datos de Hoteles en Madrid
 
-![HOBiB Logo]('src/images/hobib.png')
+![HOBiB Logo](src/images/hobib.png)
 
 HOBiB (Hotel Booking Information in Madrid) es un proyecto diseñado para extraer, limpiar, transformar y visualizar datos de hoteles en Madrid utilizando técnicas de ETL (Extract, Transform, Load) y web scraping con Selenium. El objetivo principal es obtener información relevante sobre los hoteles disponibles en la ciudad desde Booking.com y presentarla de manera visual y accesible a través de una interfaz interactiva creada con Streamlit.
 
@@ -10,7 +10,7 @@ El proceso de extracción, transformación y carga de datos en HOBiB se realiza 
 
 - **Extracción**: Se utiliza web scraping con Selenium para obtener información detallada de los hoteles en Madrid desde Booking.com. Se recopilan datos como el nombre del hotel, precio, distrito y rating.
 
-- **Limpieza y transformación**: Utilizando la biblioteca de Python llamada Pandas, se lleva a cabo la limpieza y transformación de los datos extraídos. Se eliminan valores nulos, se ajusta el formato de los datos y se realizan cálculos o transformaciones necesarias para preparar los datos para su visualización.
+- **Limpieza y Transformación**: Utilizando la biblioteca de Python llamada Pandas, se lleva a cabo la limpieza y transformación de los datos extraídos. Se eliminan valores nulos, se ajusta el formato de los datos y se realizan cálculos o transformaciones necesarias para preparar los datos para su visualización.
 
 - **Carga**: Los datos limpios y transformados se cargan en una estructura de datos adecuada para su posterior visualización y análisis.
 
@@ -32,28 +32,28 @@ Durante el desarrollo del proyecto HOBiB, nos encontramos con algunos retos que 
 
 - **Ventanas emergentes (pop-up windows)**: En cada paso del proceso de web scraping con Selenium, nos enfrentamos a ventanas emergentes. Para manejar estas ventanas, utilizamos la estructura `try/except` para identificar y hacer clic en los elementos necesarios dentro de las ventanas emergentes.
 
-  ```python
-  try:
-      popup_button = driver.find_element(By.CLASS_NAME, 'popup-button
+```python
+try:
+    popup_button = driver.find_element(By.CLASS_NAME, 'popup-button')
+    popup_button.click()
+except:
+    # No se encontró ninguna ventana emergente, se continúa
 
--class')
-      popup_button.click()
-  except:
-      # No se encontró ninguna ventana emergente, se continúa con la lógica de scraping
-      pass
-  ```
+ con la lógica de scraping
+    pass
+```
 
 - **Filtros dinámicos**: Booking.com utiliza filtros dinámicos que se actualizan en tiempo real a medida que el usuario interactúa con ellos. Para abordar este desafío, utilizamos localizadores por XPath para encontrar y seleccionar los elementos específicos relacionados con los filtros dinámicos en el sitio web.
 
-  ```python
-  # Ejemplo de selección de un filtro dinámico utilizando XPath
-  filter_element = driver.find_element(By.XPATH, "//div[contains(text(), 'Filter Text')]")
-  filter_element.click()
-  ```
+```python
+# Ejemplo de selección de un filtro dinámico utilizando XPath
+filter_element = driver.find_element(By.XPATH, "//div[contains(text(), 'Filter Text')]")
+filter_element.click()
+```
 
 ## Creación de columnas "rating" y "distrito"
 
-Para crear las columnas "rating" y "distrito" se inspeccionaron las filas donde se encontraba presente la string presente en la lista dada:
+Para crear las columnas "rating" y "distrito" en el DataFrame, puedes utilizar la siguiente función:
 
 ```python
 distritos = ['Centro', 'Arganzuela', 'Retiro', 'Salamanca', 'Chamartín', 'Tetuan', 'Chamberi', 'Fuencarral', 'Moncloa', 'Latina', 'Carabanchel', 'Usera', 'Vallecas', 'Moratalaz', 'Ciudad Lineal', 'Hortaleza', 'Villaverde', 'Vicalvaro', 'San Blas', 'Barajas']  # Lista de nombres de distritos
@@ -76,8 +76,10 @@ df['rating'] = df['rating'].fillna(0)
 
 Esta función crea una máscara booleana que verifica si algún nombre de distrito está presente en cada celda del DataFrame. Luego, se utiliza la máscara para seleccionar las filas que coinciden con los distritos y asignar el nombre del distrito correspondiente a la columna 'distrito'. A continuación, se crea la columna 'rating' a partir del contenido de la columna 'distrito', utilizando solo la parte del rating si está presente. Los valores nulos en las columnas 'distrito' y 'rating' se rellenan con 'Otro' y 0, respectivamente.
 
+Recuerda reemplazar 'df' con el nombre de tu DataFrame que contiene los datos extraídos y limpiados.
+
 ## Contribuciones y Contacto
 
 Si estás interesado en contribuir a este proyecto, tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros. Puedes enviar un correo electrónico a [correo electrónico de contacto] o visitar nuestra página de GitHub en [enlace a tu repositorio en GitHub].
 
-Esperamos que HOBiB sea una herramienta útil
+Esperamos que HOBiB sea una herramienta útil.
