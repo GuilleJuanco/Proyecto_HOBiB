@@ -1,6 +1,6 @@
 # HOBiB: Extracción y Visualización de Datos de Hoteles en Madrid
 
-![HOBiB Logo](src/images/hobib.png)
+![HOBiB Logo](src/images/HOBiB.png)
 
 HOBiB (Hotel Booking Information in Madrid) es un proyecto diseñado para extraer, limpiar, transformar y visualizar datos de hoteles en Madrid utilizando técnicas de ETL (Extract, Transform, Load) y web scraping con Selenium. El objetivo principal es obtener información relevante sobre los hoteles disponibles en la ciudad desde Booking.com y presentarla de manera visual y accesible a través de una interfaz interactiva creada con Streamlit.
 
